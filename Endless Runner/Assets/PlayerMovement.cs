@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentLane = -1;
             }
-
-            UpdateLocation();
         }
 
         if(Input.GetButtonDown("Right"))
@@ -33,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 currentLane = 1;
             }
-
-            UpdateLocation();
         }
 
         if(Input.GetButtonDown("Jump"))
@@ -45,28 +41,28 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(currentLane);
     }
 
-    void UpdateLocation()
+    void FixedUpdate()
     {
         if(currentLane == -1)
         {
             Vector3 targetPosition = new Vector3(4,transform.position.y,0);
 
             transform.position = 
-            Vector3.MoveTowards(transform.position,targetPosition,1);
+            Vector3.MoveTowards(transform.position,targetPosition,0.5f);
         }
         else if(currentLane == 0)
         {
             Vector3 targetPosition = new Vector3(0,transform.position.y,0);
 
             transform.position = 
-            Vector3.MoveTowards(transform.position,targetPosition,1);
+            Vector3.MoveTowards(transform.position,targetPosition,0.5f);
         }
         else if(currentLane == 1)
         {
             Vector3 targetPosition = new Vector3(-4,transform.position.y,0);
 
             transform.position = 
-            Vector3.MoveTowards(transform.position,targetPosition,1);
+            Vector3.MoveTowards(transform.position,targetPosition,0.5f);
         }
     }
 }
