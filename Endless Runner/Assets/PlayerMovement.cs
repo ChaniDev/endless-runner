@@ -10,6 +10,5 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         
-        Debug.Log("YES");
     }
 }
