@@ -9,22 +9,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Left"))
-        {
-            
-            
-        }
-
-        if(Input.GetButtonDown("Right"))
-        {
-            
-        }
-
-        if(Input.GetButtonDown("Jump"))
-        {
-
-        }
-
-        Debug.Log(currentLane);
+        
     }
 }
