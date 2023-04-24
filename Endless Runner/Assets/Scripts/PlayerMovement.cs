@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = Vector3.Lerp
                     (transform.position,
                     new Vector3
-                        (selectedLane*-4,
+                        (selectedLane*-8,
                         transform.position.y,
                         transform.position.z),
                     movementSpeed);
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
                 playerCamera.transform.position = Vector3.Lerp
                     (playerCamera.transform.position,
                     new Vector3
-                        (selectedLane*-2,
+                        (selectedLane*-7,
                         playerCamera.transform.position.y,
                         playerCamera.transform.position.z),
                     movementSpeed);
