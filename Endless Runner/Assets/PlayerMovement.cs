@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetButtonDown("Left"))
         {
-            Debug.Log("TEs");
+            Debug.Log("Left");
 
             switch(currentLane)
             {
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonDown("Right"))
         {
-            Debug.Log("TEs");
+            Debug.Log("Right");
 
             switch(currentLane)
             {
@@ -64,7 +64,17 @@ public class PlayerMovement : MonoBehaviour
         switch(selectedLane)
         {
             case -1:
-                transform.Translate(new Vector3(4,0,0) * Time.deltaTime * 100f);
+                transform.position = new Vector3(4,transform.position.y,transform.position.z);
+                currentLane = selectedLane;
+                break;
+
+            case 0:
+                transform.position = new Vector3(0,transform.position.y,transform.position.z);
+                currentLane = selectedLane;
+                break;
+
+            case +1:
+                transform.position = new Vector3(-4,transform.position.y,transform.position.z);
                 currentLane = selectedLane;
                 break;
         }
