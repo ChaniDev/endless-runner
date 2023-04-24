@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
                     selectedLane = 0;
                     break;
             }
-
-            UpdatePlayerLocation();
         }
 
         if(Input.GetButtonDown("Right"))
@@ -49,37 +47,34 @@ public class PlayerMovement : MonoBehaviour
                     selectedLane = +1;
                     break;
             }
-
-            UpdatePlayerLocation();
         }
     }
 
     void FixedUpdate()
     {
-        
-    }
-
-    void UpdatePlayerLocation()
-    {
-        if(selectedLane == currentLane)
-        {
-            return;
-        }
-
         switch(selectedLane)
         {
             case -1:
-                transform.position = new Vector3(4,transform.position.y,transform.position.z);
+                transform.position = Vector3.Lerp
+                    (transform.position,
+                    new Vector3(4,transform.position.y,transform.position.z),
+                    0.4f);
                 currentLane = selectedLane;
                 break;
 
             case 0:
-                transform.position = new Vector3(0,transform.position.y,transform.position.z);
+                transform.position = Vector3.Lerp
+                    (transform.position,
+                    new Vector3(0,transform.position.y,transform.position.z),
+                    0.4f);
                 currentLane = selectedLane;
                 break;
 
             case +1:
-                transform.position = new Vector3(-4,transform.position.y,transform.position.z);
+                transform.position = Vector3.Lerp
+                    (transform.position,
+                    new Vector3(-4,transform.position.y,transform.position.z),
+                    0.4f);
                 currentLane = selectedLane;
                 break;
         }
