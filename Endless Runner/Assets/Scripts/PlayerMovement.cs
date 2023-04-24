@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int selectedLane = 0;
     [SerializeField] float movementSpeed = 0.3f;
 
+    [SerializeField] Camera playerCamera;
+
     void Update()
     {
         if(Input.GetButtonDown("Left"))
@@ -55,28 +57,25 @@ public class PlayerMovement : MonoBehaviour
     {
         switch(selectedLane)
         {
-            case -1:
+            default :
+            //---- Player Movement ----
                 transform.position = Vector3.Lerp
                     (transform.position,
-                    new Vector3(4,transform.position.y,transform.position.z),
+                    new Vector3
+                        (selectedLane*-4,
+                        transform.position.y,
+                        transform.position.z),
                     movementSpeed);
                 currentLane = selectedLane;
-                break;
 
-            case 0:
-                transform.position = Vector3.Lerp
-                    (transform.position,
-                    new Vector3(0,transform.position.y,transform.position.z),
+            // ---- Camera Movement ----
+                playerCamera.transform.position = Vector3.Lerp
+                    (playerCamera.transform.position,
+                    new Vector3
+                        (selectedLane*-2,
+                        playerCamera.transform.position.y,
+                        playerCamera.transform.position.z),
                     movementSpeed);
-                currentLane = selectedLane;
-                break;
-
-            case +1:
-                transform.position = Vector3.Lerp
-                    (transform.position,
-                    new Vector3(-4,transform.position.y,transform.position.z),
-                    movementSpeed);
-                currentLane = selectedLane;
                 break;
         }
     }
