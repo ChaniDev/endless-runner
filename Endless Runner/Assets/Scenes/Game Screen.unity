@@ -530,6 +530,7 @@ MonoBehaviour:
   currentLane: 0
   selectedLane: 0
   movementSpeed: 0.3
+  playerCamera: {fileID: 963194227}
 --- !u!65 &2146676014
 BoxCollider:
   m_ObjectHideFlags: 0
