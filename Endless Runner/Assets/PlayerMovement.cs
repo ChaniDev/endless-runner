@@ -54,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        
+    }
+
     void UpdatePlayerLocation()
     {
         if(selectedLane == currentLane)
