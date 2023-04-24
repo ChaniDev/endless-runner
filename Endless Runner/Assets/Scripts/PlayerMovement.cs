@@ -6,49 +6,60 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] int currentLane = 0; 
     [SerializeField] int selectedLane = 0;
+
+    [SerializeField] int lastActiveLane = 0;
     [SerializeField] float movementSpeed = 0.3f;
+
+    [SerializeField] bool inputEnable = true;
 
     [SerializeField] Camera playerCamera;
 
     void Update()
     {
-        if(Input.GetButtonDown("Left"))
+        if(inputEnable)
         {
-            Debug.Log("Left");
-
-            switch(currentLane)
+            if(Input.GetButtonDown("Left"))
             {
-                case 0:
-                    selectedLane = -1;
-                    break;
+                Debug.Log("Left");
 
-                case -1:
-                    selectedLane = -1;
-                    break;
+                lastActiveLane = currentLane;
 
-                case +1:
-                    selectedLane = 0;
-                    break;
+                switch(currentLane)
+                {
+                    case 0:
+                        selectedLane = -1;
+                        break;
+
+                    case -1:
+                        selectedLane = -1;
+                        break;
+
+                    case +1:
+                        selectedLane = 0;
+                        break;
+                }
             }
-        }
 
-        if(Input.GetButtonDown("Right"))
-        {
-            Debug.Log("Right");
-
-            switch(currentLane)
+            if(Input.GetButtonDown("Right"))
             {
-                case 0:
-                    selectedLane = +1;
-                    break;
+                Debug.Log("Right");
 
-                case -1:
-                    selectedLane = 0;
-                    break;
+                lastActiveLane = currentLane;
 
-                case +1:
-                    selectedLane = +1;
-                    break;
+                switch(currentLane)
+                {
+                    case 0:
+                        selectedLane = +1;
+                        break;
+
+                    case -1:
+                        selectedLane = 0;
+                        break;
+
+                    case +1:
+                        selectedLane = +1;
+                        break;
+                }
             }
         }
     }
@@ -78,5 +89,29 @@ public class PlayerMovement : MonoBehaviour
                     movementSpeed);
                 break;
         }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.CompareTag("Tumble"))
+        {
+            GameManager.playerHealth--;
+
+            Debug.Log("Tumble");
+
+            FixPlayerLocation();
+        }
+
+        if(collider.CompareTag("HIT"))
+        {
+            GameManager.playerHealth.Equals(0);
+
+            Debug.Log("HIT");
+        }
+    } 
+
+    void FixPlayerLocation()
+    {
+        selectedLane = lastActiveLane;
     }
 }
