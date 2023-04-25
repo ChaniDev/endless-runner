@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //------Refrence------
+    GameManager insGameManager;
+
     [SerializeField] int currentLane = 0; 
     [SerializeField] int selectedLane = 0;
 
@@ -13,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool inputEnable = true;
 
     [SerializeField] Camera playerCamera;
+
+    void Start()
+    {
+        insGameManager = FindObjectOfType<GameManager>();
+    }
 
     void Update()
     {
@@ -32,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
 
                     case -1:
                         selectedLane = -1;
+
+                        insGameManager.PlayerStatus("Tumble");
+
                         break;
 
                     case +1:
@@ -58,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
 
                     case +1:
                         selectedLane = +1;
+
+                        insGameManager.PlayerStatus("Tumble");
+
                         break;
                 }
             }
@@ -91,27 +105,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if(collider.CompareTag("Tumble"))
-        {
-            GameManager.playerHealth--;
-
-            Debug.Log("Tumble");
-
-            FixPlayerLocation();
-        }
-
-        if(collider.CompareTag("HIT"))
-        {
-            GameManager.playerHealth.Equals(0);
-
-            Debug.Log("HIT");
-        }
-    } 
-
-    void FixPlayerLocation()
-    {
-        selectedLane = lastActiveLane;
-    }
+    
 }
