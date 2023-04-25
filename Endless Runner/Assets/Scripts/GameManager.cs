@@ -6,11 +6,17 @@ public class GameManager : MonoBehaviour
 {
     public static int playerHealth = 2;
 
-    void Update()
+    public void PlayerStatus(string playerStatus)
     {
-        if(playerHealth.Equals(1000)) //----- Temp--- Fix Me---
+        switch(playerStatus)
         {
-            Debug.Log("Death");
+            case "Tumble":
+                Debug.Log("Tumble");
+            break;
+
+            case "Dead":
+
+            break;
         }
     }
 }
