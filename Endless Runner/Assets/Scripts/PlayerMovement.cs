@@ -6,16 +6,25 @@ public class PlayerMovement : MonoBehaviour
 {
     //------Refrence------
     GameManager insGameManager;
+    [SerializeField] Camera playerCamera;
+    [SerializeField] Rigidbody playerRigidbody;
 
+        [Space]
+    //------Variables------
     [SerializeField] int currentLane = 0; 
     [SerializeField] int selectedLane = 0;
-
     [SerializeField] int lastActiveLane = 0;
+
+        [Space]
+
     [SerializeField] float movementSpeed = 0.3f;
+    [SerializeField] float playerGravity = 10;
+    [SerializeField] float playerForce = 10;
+
+        [Space]
 
     [SerializeField] bool inputEnable = true;
 
-    [SerializeField] Camera playerCamera;
 
     void Start()
     {
@@ -26,9 +35,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(inputEnable)
         {
-            if(Input.GetButtonDown("Jump"))
+            if(Input.GetButtonDown("Up"))
             {
-                
+                playerRigidbody.AddForce(0,playerForce*100,0);
+            }
+
+            if(Input.GetButtonDown("Down"))
+            {
+                playerRigidbody.AddForce(0,-playerForce*100,0);
             }
 
             if(Input.GetButtonDown("Left"))
@@ -99,11 +113,12 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.transform.position = Vector3.Lerp
             (playerCamera.transform.position,
             new Vector3
-                (selectedLane*-7,
-                transform.position.y+5,
+                (selectedLane*-4,
+                playerCamera.transform.position.y,
                 playerCamera.transform.position.z),
-            movementSpeed);
+            0.2f);
 
-    // ----- Player Jump -----
+    // ----- Player Gravity -----
+        playerRigidbody.AddForce(0,playerGravity*10,0);
     }
 }
