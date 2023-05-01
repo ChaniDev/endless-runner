@@ -544,7 +544,7 @@ MonoBehaviour:
   currentLane: 0
   selectedLane: 0
   lastActiveLane: 0
-  movementSpeed: 0.3
+  movementSpeed: 0.4
   inputEnable: 1
   playerCamera: {fileID: 963194227}
 --- !u!65 &2146676014
