@@ -26,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(inputEnable)
         {
+            if(Input.GetButtonDown("Jump"))
+            {
+                
+            }
+
             if(Input.GetButtonDown("Left"))
             {
                 Debug.Log("Left");
@@ -80,28 +85,25 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch(selectedLane)
-        {
-            default :
-            //---- Player Movement ----
-                transform.position = Vector3.Lerp
-                    (transform.position,
-                    new Vector3
-                        (selectedLane*-8,
-                        transform.position.y,
-                        transform.position.z),
-                    movementSpeed);
-                currentLane = selectedLane;
+    //---- Player Movement ----
+        transform.position = Vector3.Lerp
+            (transform.position,
+            new Vector3
+                (selectedLane*-8,
+                transform.position.y,
+                transform.position.z),
+            movementSpeed);
+        currentLane = selectedLane;
 
-            // ---- Camera Movement ----
-                playerCamera.transform.position = Vector3.Lerp
-                    (playerCamera.transform.position,
-                    new Vector3
-                        (selectedLane*-7,
-                        playerCamera.transform.position.y,
-                        playerCamera.transform.position.z),
-                    movementSpeed);
-                break;
-        }
+    // ---- Camera Movement ----
+        playerCamera.transform.position = Vector3.Lerp
+            (playerCamera.transform.position,
+            new Vector3
+                (selectedLane*-7,
+                transform.position.y+5,
+                playerCamera.transform.position.z),
+            movementSpeed);
+
+    // ----- Player Jump -----
     }
 }
