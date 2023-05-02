@@ -644,8 +644,8 @@ MonoBehaviour:
   selectedLane: 0
   lastActiveLane: 0
   movementSpeed: 0.25
-  playerGravity: -5
-  playerForce: 10
+  playerGravity: -8
+  playerForce: 12
   inputEnable: 1
 --- !u!65 &2146676014
 BoxCollider:
