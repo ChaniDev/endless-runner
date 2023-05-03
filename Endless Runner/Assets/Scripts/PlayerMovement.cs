@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     GameManager insGameManager;
     [SerializeField] Camera playerCamera;
     [SerializeField] Rigidbody playerRigidbody;
+    [SerializeField] BoxCollider playerBoxCollider;
 
         [Space]
     //------Variables------

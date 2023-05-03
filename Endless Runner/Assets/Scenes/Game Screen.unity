@@ -704,6 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 963194227}
   playerRigidbody: {fileID: 2146676015}
+  playerBoxCollider: {fileID: 2146676014}
   currentLane: 0
   selectedLane: 0
   lastActiveLane: 0
