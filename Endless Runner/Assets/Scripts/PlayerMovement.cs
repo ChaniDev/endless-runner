@@ -38,12 +38,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Input.GetButtonDown("Up"))
             {
-                playerRigidbody.AddForce(0,playerForce*100,0);
+                PlayerJump();
             }
 
             if(Input.GetButtonDown("Down"))
             {
-                playerRigidbody.AddForce(0,-playerForce*100,0);
+                PlayerRoll();
             }
 
             if(Input.GetButtonDown("Left"))
@@ -121,5 +121,15 @@ public class PlayerMovement : MonoBehaviour
 
     // ----- Player Gravity -----
         playerRigidbody.AddForce(0,playerGravity*10,0);
+    }
+
+    void PlayerJump()
+    {
+        playerRigidbody.AddForce(0,playerForce*100,0);
+    }
+
+    void PlayerRoll()
+    {
+        playerRigidbody.AddForce(0,-playerForce*100,0);
     }
 }
