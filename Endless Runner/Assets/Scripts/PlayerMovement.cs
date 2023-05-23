@@ -21,10 +21,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 0.3f;
     [SerializeField] float playerGravity = 10;
     [SerializeField] float playerForce = 10;
+    [SerializeField] float jumpForce = 1;
 
         [Space]
 
     [SerializeField] bool inputEnable = true;
+
+    //------------ Private Variables --------------
+    private Vector3 targetPosition ;
 
 
     void Start()
@@ -38,12 +42,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Input.GetButtonDown("Up"))
             {
-                PlayerJump();
+                
             }
 
             if(Input.GetButtonDown("Down"))
             {
-                PlayerRoll();
+                
             }
 
             if(Input.GetButtonDown("Left"))
@@ -104,9 +108,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.Lerp
             (transform.position,
             new Vector3
-                (selectedLane*-4,
-                transform.position.y,
-                transform.position.z),
+                (),
             movementSpeed);
         currentLane = selectedLane;
 
@@ -121,30 +123,5 @@ public class PlayerMovement : MonoBehaviour
 
     // ----- Player Gravity -----
         playerRigidbody.AddForce(0,playerGravity*10,0);
-    }
-
-    void PlayerJump()
-    {
-        playerRigidbody.AddForce(0,playerForce*100,0);
-    }
-
-    void PlayerRoll()
-    {
-        playerRigidbody.AddForce(0,-playerForce*100,0);
-
-        playerBoxCollider.center = new Vector3(0,-0.25f,0);
-        playerBoxCollider.size = new Vector3(1,0.5f,1);
-
-        RollTimer();
-    }
-
-    void RollTimer()
-    {
-        int i = 100;
-
-        
-
-        playerBoxCollider.center = new Vector3(0,0,0);
-        playerBoxCollider.size = new Vector3(1,1,1);
     }
 }
