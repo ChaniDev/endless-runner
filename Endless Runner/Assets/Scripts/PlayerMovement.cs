@@ -131,5 +131,20 @@ public class PlayerMovement : MonoBehaviour
     void PlayerRoll()
     {
         playerRigidbody.AddForce(0,-playerForce*100,0);
+
+        playerBoxCollider.center = new Vector3(0,-0.25f,0);
+        playerBoxCollider.size = new Vector3(1,0.5f,1);
+
+        RollTimer();
+    }
+
+    void RollTimer()
+    {
+        int i = 100;
+
+        
+
+        playerBoxCollider.center = new Vector3(0,0,0);
+        playerBoxCollider.size = new Vector3(1,1,1);
     }
 }
