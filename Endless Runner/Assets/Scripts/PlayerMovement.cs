@@ -72,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
                         selectedLane = 0;
                         break;
                 }
+
+                AdjustBoxCollider("Big");
             }
 
             if(Input.GetButtonDown("Right"))
@@ -97,6 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
                         break;
                 }
+
+                AdjustBoxCollider("Big");
             }
         }
     }
@@ -128,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerJump()
     {
+        AdjustBoxCollider("Big");
+
     //---- Zero gravity force to have constant jump!-----
         playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x,0);
 
@@ -136,17 +142,31 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerRoll()
     {
-
+        AdjustBoxCollider("Small");
     }
 
     void AdjustBoxCollider(string inputCommand)
     {
-        switch(inputCommand)
+        switch (inputCommand)
         {
-            case "small":
+            case "Small":
+
+                playerBoxCollider.center = new Vector3(0,-0.25f,0);
+                playerBoxCollider.size = new Vector3(1,0.5f,1);
+
                 break;
+
+            case "Big":
             
-            case "big":
+                playerBoxCollider.center = new Vector3(0,0,0);
+                playerBoxCollider.size = new Vector3(1,1,1);
+
+                break; 
+
+            default:
+
+                Debug.LogError("Invalid inputCommand!");
+
                 break;
         }
     }
