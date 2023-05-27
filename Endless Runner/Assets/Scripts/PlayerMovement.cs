@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float movementSpeed = 0.3f;
     [SerializeField] float playerGravity = 10;
-    [SerializeField] float playerForce = 10;
     [SerializeField] float jumpForce = 1;
 
         [Space]
@@ -42,12 +41,12 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Input.GetButtonDown("Up"))
             {
-                
+                PlayerJump();
             }
 
             if(Input.GetButtonDown("Down"))
             {
-                
+                PlayerRoll();
             }
 
             if(Input.GetButtonDown("Left"))
@@ -108,7 +107,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = Vector3.Lerp
             (transform.position,
             new Vector3
-                (),
+                (selectedLane*-4,
+                this.transform.position.y,
+                this.transform.position.z),
             movementSpeed);
         currentLane = selectedLane;
 
@@ -122,6 +123,31 @@ public class PlayerMovement : MonoBehaviour
             0.2f);
 
     // ----- Player Gravity -----
-        playerRigidbody.AddForce(0,playerGravity*10,0);
+        playerRigidbody.AddForce(0,playerGravity*-10,0);
+    }
+
+    void PlayerJump()
+    {
+    //---- Zero gravity force to have constant jump!-----
+        playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x,0);
+
+        playerRigidbody.AddForce(0,jumpForce*100,0);
+    }
+
+    void PlayerRoll()
+    {
+
+    }
+
+    void AdjustBoxCollider(string inputCommand)
+    {
+        switch(inputCommand)
+        {
+            case "small":
+                break;
+            
+            case "big":
+                break;
+        }
     }
 }
