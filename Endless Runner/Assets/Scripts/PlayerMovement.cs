@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int currentLane = 0; 
     [SerializeField] int selectedLane = 0;
     [SerializeField] int lastActiveLane = 0;
+    [SerializeField] bool playerIsRolling = false;
 
         [Space]
 
@@ -22,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float playerGravity = 10;
     [SerializeField] float jumpForce = 1;
 
+        [Space]
+
+    [SerializeField] float internalRollCount = 0;
+    [SerializeField] float rollTimer = 10;
+
+ 
         [Space]
 
     [SerializeField] bool inputEnable = true;
@@ -121,13 +128,26 @@ public class PlayerMovement : MonoBehaviour
         playerCamera.transform.position = Vector3.Lerp
             (playerCamera.transform.position,
             new Vector3
-                (selectedLane*-0.5f,
+                (selectedLane*-1f,
                 playerCamera.transform.position.y,
                 playerCamera.transform.position.z),
             0.2f);
 
     // ----- Player Gravity -----
         playerRigidbody.AddForce(0,playerGravity*-10,0);
+
+    // ----- Player Roll ------
+        if(playerIsRolling)
+        {
+            internalRollCount++;
+
+            if(internalRollCount > rollTimer)
+            {
+                AdjustBoxCollider("Big");
+                playerIsRolling = false;
+                internalRollCount = 0;
+            }
+        }
     }
 
     void PlayerJump()
@@ -138,11 +158,18 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x,0);
 
         playerRigidbody.AddForce(0,jumpForce*100,0);
+
+        playerIsRolling = false;
     }
 
     void PlayerRoll()
     {
         AdjustBoxCollider("Small");
+
+        internalRollCount = 0;
+
+        playerIsRolling = true;
+
     }
 
     void AdjustBoxCollider(string inputCommand)
