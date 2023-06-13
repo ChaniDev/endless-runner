@@ -14,7 +14,7 @@ public class GroundCheck : MonoBehaviour
 
     private void Update() 
     {
-            insPlayerMovement.PlayerGrounded(isGrounded);
+        insPlayerMovement.PlayerGrounded(isGrounded);
     }
 
     private void OnTriggersEnter(Collider other) 
