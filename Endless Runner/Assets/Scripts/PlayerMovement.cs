@@ -15,7 +15,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int currentLane = 0; 
     [SerializeField] int selectedLane = 0;
     [SerializeField] int lastActiveLane = 0;
+
+        [Space]
+        
     [SerializeField] bool playerIsRolling = false;
+    [SerializeField] bool playerGrounded = false;
 
         [Space]
 
@@ -168,8 +172,15 @@ public class PlayerMovement : MonoBehaviour
 
         internalRollCount = 0;
 
+        playerRigidbody.AddForce(0,-jumpForce*100,0);
+
         playerIsRolling = true;
 
+    }
+
+    public void PlayerGrounded(bool isGrounded)
+    {
+        playerGrounded = isGrounded;
     }
 
     void AdjustBoxCollider(string inputCommand)
