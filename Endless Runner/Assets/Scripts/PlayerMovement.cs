@@ -23,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
 
         [Space]
 
+    [SerializeField] bool rollEnabled = false;
+    [SerializeField] bool jumpEnabled = false;
+
+        [Space]
+
     [SerializeField] float movementSpeed = 0.3f;
     [SerializeField] float playerGravity = 10;
     [SerializeField] float jumpForce = 1;
@@ -48,16 +53,27 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if(playerGrounded)
+
+
+    //--------- Player Control ----------
         if(inputEnable)
         {
             if(Input.GetButtonDown("Up"))
             {
-                PlayerJump();
+                if(jumpEnabled)
+                {
+                    PlayerJump();
+                }
             }
 
             if(Input.GetButtonDown("Down"))
             {
-                PlayerRoll();
+                if(rollEnabled)
+                {
+                    PlayerRoll();
+                }
             }
 
             if(Input.GetButtonDown("Left"))
