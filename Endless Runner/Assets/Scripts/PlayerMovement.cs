@@ -61,16 +61,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
-        if(playerGrounded)
-        {
-            jumpEnabled = true;
-        }
-        else
-        {
-            jumpEnabled = false;
-        }
-
         if(playerIsRolling)
         {
             rollEnabled = false;
@@ -192,7 +182,17 @@ public class PlayerMovement : MonoBehaviour
 
         if(!playerGrounded)
         {
-            
+            coyoteBufferClock++;
+
+            if(coyoteBufferClock > coyoteBufferTime)
+            {
+                jumpEnabled = false;
+                coyoteBufferClock = 0;
+            }
+        }
+        else
+        {
+            jumpEnabled = true;
         }
 
     
@@ -212,8 +212,8 @@ public class PlayerMovement : MonoBehaviour
             }  
             else
             {
-                jumpBufferClock = 0;
                 jumpRequest = false;
+                jumpBufferClock = 0;
             }          
         }
     }
