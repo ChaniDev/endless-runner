@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     GameManager insGameManager;
     [SerializeField] Camera playerCamera;
     [SerializeField] Rigidbody playerRigidbody;
-    [SerializeField] BoxCollider playerBoxCollider;
+    [SerializeField] CapsuleCollider playerCollider;
 
         [Space]
     //------Variables------
@@ -255,15 +255,15 @@ public class PlayerMovement : MonoBehaviour
         {
             case "Small":
 
-                playerBoxCollider.center = new Vector3(0,-0.25f,0);
-                playerBoxCollider.size = new Vector3(1,0.5f,1);
+                playerCollider.center = new Vector3(0,-0.5f,0);
+                playerCollider.height = 1;
 
                 break;
 
             case "Big":
             
-                playerBoxCollider.center = new Vector3(0,0,0);
-                playerBoxCollider.size = new Vector3(1,1,1);
+                playerCollider.center = new Vector3(0,0,0);
+                playerCollider.height = 2;
 
                 break; 
 
