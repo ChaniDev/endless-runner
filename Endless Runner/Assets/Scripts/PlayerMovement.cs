@@ -25,9 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] bool rollEnabled = false;
     [SerializeField] bool jumpEnabled = false;
+
     bool jumpRequest = false;
+
     int jumpBufferClock = 0;
     [SerializeField] int jumpBufferTime = 10;
+
+    int coyoteBufferClock = 0;
+    [SerializeField] int coyoteBufferTime = 4;
 
         [Space]
 
@@ -185,6 +190,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(!playerGrounded)
+        {
+            
+        }
+
+    
+    //--------Jump Buffer---------
         if(jumpRequest)
         {
             jumpBufferClock++;
