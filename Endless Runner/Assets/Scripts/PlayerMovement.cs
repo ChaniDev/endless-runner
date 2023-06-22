@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] bool rollEnabled = false;
     [SerializeField] bool jumpEnabled = false;
+    bool jumpRequest = false;
+    int jumpBufferClock = 0;
+    [SerializeField] int jumpBufferTime = 10;
 
         [Space]
 
@@ -55,6 +58,22 @@ public class PlayerMovement : MonoBehaviour
     {
 
         if(playerGrounded)
+        {
+            jumpEnabled = true;
+        }
+        else
+        {
+            jumpEnabled = false;
+        }
+
+        if(playerIsRolling)
+        {
+            rollEnabled = false;
+        }
+        else
+        {
+            rollEnabled = true;
+        }
 
 
     //--------- Player Control ----------
@@ -62,10 +81,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(Input.GetButtonDown("Up"))
             {
-                if(jumpEnabled)
-                {
-                    PlayerJump();
-                }
+                jumpRequest = true;
             }
 
             if(Input.GetButtonDown("Down"))
@@ -168,6 +184,26 @@ public class PlayerMovement : MonoBehaviour
                 internalRollCount = 0;
             }
         }
+
+        if(jumpRequest)
+        {
+            jumpBufferClock++;
+
+            if(jumpBufferClock < jumpBufferTime)
+            {
+                if(jumpEnabled)
+                {
+                    jumpRequest = false;
+                    jumpBufferClock = 0;
+                    PlayerJump();
+                }
+            }  
+            else
+            {
+                jumpBufferClock = 0;
+                jumpRequest = false;
+            }          
+        }
     }
 
     void PlayerJump()
@@ -188,7 +224,9 @@ public class PlayerMovement : MonoBehaviour
 
         internalRollCount = 0;
 
-        playerRigidbody.AddForce(0,-jumpForce*100,0);
+        playerRigidbody.velocity = new Vector3(playerRigidbody.velocity.x,0);
+
+        playerRigidbody.AddForce(0,-jumpForce*150,0);
 
         playerIsRolling = true;
 
