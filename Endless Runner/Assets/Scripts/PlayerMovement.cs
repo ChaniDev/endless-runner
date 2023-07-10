@@ -274,9 +274,4 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
-
-    public void PlayerTumble()
-    {
-        selectedLane = lastActiveLane;
-    }
 }
