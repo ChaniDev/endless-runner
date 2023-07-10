@@ -17,17 +17,6 @@ public class GameManager : MonoBehaviour
 
     public void PlayerStatus(string playerStatus)
     {
-        switch(playerStatus)
-        {
-            case "Tumble":
-                Debug.Log("Tumble");
-
-                insPlayerMovement.PlayerTumble();
-            break;
-
-            case "Dead":
-
-            break;
-        }
+        Debug.Log("Tumble");
     }
 }
